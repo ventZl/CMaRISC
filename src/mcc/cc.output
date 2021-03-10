@@ -1,0 +1,2162 @@
+Terminals unused in grammar
+
+   LHZAT
+   PHZAT
+   BODKA
+
+
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: Statements
+
+    2 Statements: /* empty */
+    3           | Statements TypeDef
+    4           | Statements VarDef
+    5           | Statements Function
+
+    6 TypeDef: STRUCT ID LZZAT Parametre PZZAT BCIARKA
+    7        | UNION ID LZZAT Parametre PZZAT BCIARKA
+
+    8 VarDef: DataType ID
+    9       | DataType ID EQ Vyraz
+
+   10 Function: DataType ID LOZAT NepParametre POZAT TeloMet
+
+   11 NepParametre: /* empty */
+   12             | Parametre
+
+   13 Parametre: DataType ID
+   14          | Parametre CIARKA DataType ID
+
+   15 DataType: VoidType
+   16         | CanonType
+   17         | UserType
+
+   18 VoidType: VOID
+
+   19 CanonType: INT
+   20          | CHAR
+
+   21 UserType: STRUCT ID
+   22         | UNION ID
+
+   23 TeloMet: BCIARKA
+   24        | LZZAT Prikazy PZZAT
+   25        | LZZAT PZZAT
+
+   26 Prikazy: Prikaz
+   27        | Prikazy Prikaz
+   28        | Prikazy error
+
+   29 Prikaz: VarDef BCIARKA
+   30       | Vyraz BCIARKA
+   31       | RETURN BCIARKA
+   32       | BCIARKA
+   33       | RETURN Vyraz BCIARKA
+   34       | WHILE LOZAT Vyraz POZAT Prikaz
+   35       | IF LOZAT Vyraz POZAT Prikaz ELSE Prikaz
+   36       | IF LOZAT Vyraz POZAT Prikaz
+   37       | LZZAT Prikazy PZZAT
+
+   38 Vyraz: Primarny
+   39      | Vyraz PLUS Vyraz
+   40      | Vyraz MINUS Vyraz
+   41      | Vyraz KRAT Vyraz
+   42      | Vyraz DEL Vyraz
+   43      | Vyraz LT Vyraz
+   44      | Vyraz LE Vyraz
+   45      | Vyraz GT Vyraz
+   46      | Vyraz GE Vyraz
+   47      | Vyraz EQ Vyraz
+   48      | Vyraz NE Vyraz
+   49      | Vyraz OR Vyraz
+   50      | Vyraz AND Vyraz
+   51      | MINUS Vyraz
+   52      | Vyraz ZVYS Vyraz
+   53      | NOT Vyraz
+   54      | Vyraz OTAZ Vyraz DBOD Vyraz
+
+   55 Primarny: ID
+   56         | ID ROVNE Vyraz
+   57         | INT_LITERAL
+   58         | STR_LITERAL
+   59         | LOZAT Vyraz POZAT
+   60         | ID LOZAT NepArgumenty POZAT
+
+   61 NepArgumenty: /* empty */
+   62             | Argumenty
+
+   63 Argumenty: Vyraz
+   64          | Argumenty CIARKA Vyraz
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256) 28
+INT (258) 19
+CHAR (259) 20
+VOID (260) 18
+STRUCT (261) 6 21
+UNION (262) 7 22
+RETURN (263) 31 33
+IF (264) 35 36
+ELSE (265) 35
+WHILE (266) 34
+ID (267) 6 7 8 9 10 13 14 21 22 55 56 60
+STR_LITERAL (268) 58
+INT_LITERAL (269) 57
+LZZAT (270) 6 7 24 25 37
+PZZAT (271) 6 7 24 25 37
+LOZAT (272) 10 34 35 36 59 60
+POZAT (273) 10 34 35 36 59 60
+LHZAT (274)
+PHZAT (275)
+CIARKA (276) 14 64
+BCIARKA (277) 6 7 23 29 30 31 32 33
+BODKA (278)
+ROVNE (279) 56
+ZVYS (280) 52
+OTAZ (281) 54
+DBOD (282) 54
+OR (283) 49
+AND (284) 50
+NE (285) 48
+EQ (286) 9 47
+GE (287) 46
+GT (288) 45
+LE (289) 44
+LT (290) 43
+MINUS (291) 40 51
+PLUS (292) 39
+DEL (293) 42
+KRAT (294) 41
+NOT (295) 53
+UMINUS (296)
+
+
+Nonterminals, with rules where they appear
+
+$accept (42)
+    on left: 0
+Program (43)
+    on left: 1, on right: 0
+Statements (44)
+    on left: 2 3 4 5, on right: 1 3 4 5
+TypeDef (45)
+    on left: 6 7, on right: 3
+VarDef (46)
+    on left: 8 9, on right: 4 29
+Function (47)
+    on left: 10, on right: 5
+NepParametre (48)
+    on left: 11 12, on right: 10
+Parametre (49)
+    on left: 13 14, on right: 6 7 12 14
+DataType (50)
+    on left: 15 16 17, on right: 8 9 10 13 14
+VoidType (51)
+    on left: 18, on right: 15
+CanonType (52)
+    on left: 19 20, on right: 16
+UserType (53)
+    on left: 21 22, on right: 17
+TeloMet (54)
+    on left: 23 24 25, on right: 10
+Prikazy (55)
+    on left: 26 27 28, on right: 24 27 28 37
+Prikaz (56)
+    on left: 29 30 31 32 33 34 35 36 37, on right: 26 27 34 35 36
+Vyraz (57)
+    on left: 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54, on right:
+    9 30 33 34 35 36 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54
+    56 59 63 64
+Primarny (58)
+    on left: 55 56 57 58 59 60, on right: 38
+NepArgumenty (59)
+    on left: 61 62, on right: 60
+Argumenty (60)
+    on left: 63 64, on right: 62 64
+
+
+state 0
+
+    0 $accept: . Program $end
+
+    $default  reduce using rule 2 (Statements)
+
+    Program     go to state 1
+    Statements  go to state 2
+
+
+state 1
+
+    0 $accept: Program . $end
+
+    $end  shift, and go to state 3
+
+
+state 2
+
+    1 Program: Statements .
+    3 Statements: Statements . TypeDef
+    4           | Statements . VarDef
+    5           | Statements . Function
+
+    INT     shift, and go to state 4
+    CHAR    shift, and go to state 5
+    VOID    shift, and go to state 6
+    STRUCT  shift, and go to state 7
+    UNION   shift, and go to state 8
+
+    $default  reduce using rule 1 (Program)
+
+    TypeDef    go to state 9
+    VarDef     go to state 10
+    Function   go to state 11
+    DataType   go to state 12
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+
+
+state 3
+
+    0 $accept: Program $end .
+
+    $default  accept
+
+
+state 4
+
+   19 CanonType: INT .
+
+    $default  reduce using rule 19 (CanonType)
+
+
+state 5
+
+   20 CanonType: CHAR .
+
+    $default  reduce using rule 20 (CanonType)
+
+
+state 6
+
+   18 VoidType: VOID .
+
+    $default  reduce using rule 18 (VoidType)
+
+
+state 7
+
+    6 TypeDef: STRUCT . ID LZZAT Parametre PZZAT BCIARKA
+   21 UserType: STRUCT . ID
+
+    ID  shift, and go to state 16
+
+
+state 8
+
+    7 TypeDef: UNION . ID LZZAT Parametre PZZAT BCIARKA
+   22 UserType: UNION . ID
+
+    ID  shift, and go to state 17
+
+
+state 9
+
+    3 Statements: Statements TypeDef .
+
+    $default  reduce using rule 3 (Statements)
+
+
+state 10
+
+    4 Statements: Statements VarDef .
+
+    $default  reduce using rule 4 (Statements)
+
+
+state 11
+
+    5 Statements: Statements Function .
+
+    $default  reduce using rule 5 (Statements)
+
+
+state 12
+
+    8 VarDef: DataType . ID
+    9       | DataType . ID EQ Vyraz
+   10 Function: DataType . ID LOZAT NepParametre POZAT TeloMet
+
+    ID  shift, and go to state 18
+
+
+state 13
+
+   15 DataType: VoidType .
+
+    $default  reduce using rule 15 (DataType)
+
+
+state 14
+
+   16 DataType: CanonType .
+
+    $default  reduce using rule 16 (DataType)
+
+
+state 15
+
+   17 DataType: UserType .
+
+    $default  reduce using rule 17 (DataType)
+
+
+state 16
+
+    6 TypeDef: STRUCT ID . LZZAT Parametre PZZAT BCIARKA
+   21 UserType: STRUCT ID .
+
+    LZZAT  shift, and go to state 19
+
+    $default  reduce using rule 21 (UserType)
+
+
+state 17
+
+    7 TypeDef: UNION ID . LZZAT Parametre PZZAT BCIARKA
+   22 UserType: UNION ID .
+
+    LZZAT  shift, and go to state 20
+
+    $default  reduce using rule 22 (UserType)
+
+
+state 18
+
+    8 VarDef: DataType ID .
+    9       | DataType ID . EQ Vyraz
+   10 Function: DataType ID . LOZAT NepParametre POZAT TeloMet
+
+    LOZAT  shift, and go to state 21
+    EQ     shift, and go to state 22
+
+    $default  reduce using rule 8 (VarDef)
+
+
+state 19
+
+    6 TypeDef: STRUCT ID LZZAT . Parametre PZZAT BCIARKA
+
+    INT     shift, and go to state 4
+    CHAR    shift, and go to state 5
+    VOID    shift, and go to state 6
+    STRUCT  shift, and go to state 23
+    UNION   shift, and go to state 24
+
+    Parametre  go to state 25
+    DataType   go to state 26
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+
+
+state 20
+
+    7 TypeDef: UNION ID LZZAT . Parametre PZZAT BCIARKA
+
+    INT     shift, and go to state 4
+    CHAR    shift, and go to state 5
+    VOID    shift, and go to state 6
+    STRUCT  shift, and go to state 23
+    UNION   shift, and go to state 24
+
+    Parametre  go to state 27
+    DataType   go to state 26
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+
+
+state 21
+
+   10 Function: DataType ID LOZAT . NepParametre POZAT TeloMet
+
+    INT     shift, and go to state 4
+    CHAR    shift, and go to state 5
+    VOID    shift, and go to state 6
+    STRUCT  shift, and go to state 23
+    UNION   shift, and go to state 24
+
+    $default  reduce using rule 11 (NepParametre)
+
+    NepParametre  go to state 28
+    Parametre     go to state 29
+    DataType      go to state 26
+    VoidType      go to state 13
+    CanonType     go to state 14
+    UserType      go to state 15
+
+
+state 22
+
+    9 VarDef: DataType ID EQ . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 36
+    Primarny  go to state 37
+
+
+state 23
+
+   21 UserType: STRUCT . ID
+
+    ID  shift, and go to state 38
+
+
+state 24
+
+   22 UserType: UNION . ID
+
+    ID  shift, and go to state 39
+
+
+state 25
+
+    6 TypeDef: STRUCT ID LZZAT Parametre . PZZAT BCIARKA
+   14 Parametre: Parametre . CIARKA DataType ID
+
+    PZZAT   shift, and go to state 40
+    CIARKA  shift, and go to state 41
+
+
+state 26
+
+   13 Parametre: DataType . ID
+
+    ID  shift, and go to state 42
+
+
+state 27
+
+    7 TypeDef: UNION ID LZZAT Parametre . PZZAT BCIARKA
+   14 Parametre: Parametre . CIARKA DataType ID
+
+    PZZAT   shift, and go to state 43
+    CIARKA  shift, and go to state 41
+
+
+state 28
+
+   10 Function: DataType ID LOZAT NepParametre . POZAT TeloMet
+
+    POZAT  shift, and go to state 44
+
+
+state 29
+
+   12 NepParametre: Parametre .
+   14 Parametre: Parametre . CIARKA DataType ID
+
+    CIARKA  shift, and go to state 41
+
+    $default  reduce using rule 12 (NepParametre)
+
+
+state 30
+
+   55 Primarny: ID .
+   56         | ID . ROVNE Vyraz
+   60         | ID . LOZAT NepArgumenty POZAT
+
+    LOZAT  shift, and go to state 45
+    ROVNE  shift, and go to state 46
+
+    $default  reduce using rule 55 (Primarny)
+
+
+state 31
+
+   58 Primarny: STR_LITERAL .
+
+    $default  reduce using rule 58 (Primarny)
+
+
+state 32
+
+   57 Primarny: INT_LITERAL .
+
+    $default  reduce using rule 57 (Primarny)
+
+
+state 33
+
+   59 Primarny: LOZAT . Vyraz POZAT
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 47
+    Primarny  go to state 37
+
+
+state 34
+
+   51 Vyraz: MINUS . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 48
+    Primarny  go to state 37
+
+
+state 35
+
+   53 Vyraz: NOT . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 49
+    Primarny  go to state 37
+
+
+state 36
+
+    9 VarDef: DataType ID EQ Vyraz .
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 9 (VarDef)
+
+
+state 37
+
+   38 Vyraz: Primarny .
+
+    $default  reduce using rule 38 (Vyraz)
+
+
+state 38
+
+   21 UserType: STRUCT ID .
+
+    $default  reduce using rule 21 (UserType)
+
+
+state 39
+
+   22 UserType: UNION ID .
+
+    $default  reduce using rule 22 (UserType)
+
+
+state 40
+
+    6 TypeDef: STRUCT ID LZZAT Parametre PZZAT . BCIARKA
+
+    BCIARKA  shift, and go to state 64
+
+
+state 41
+
+   14 Parametre: Parametre CIARKA . DataType ID
+
+    INT     shift, and go to state 4
+    CHAR    shift, and go to state 5
+    VOID    shift, and go to state 6
+    STRUCT  shift, and go to state 23
+    UNION   shift, and go to state 24
+
+    DataType   go to state 65
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+
+
+state 42
+
+   13 Parametre: DataType ID .
+
+    $default  reduce using rule 13 (Parametre)
+
+
+state 43
+
+    7 TypeDef: UNION ID LZZAT Parametre PZZAT . BCIARKA
+
+    BCIARKA  shift, and go to state 66
+
+
+state 44
+
+   10 Function: DataType ID LOZAT NepParametre POZAT . TeloMet
+
+    LZZAT    shift, and go to state 67
+    BCIARKA  shift, and go to state 68
+
+    TeloMet  go to state 69
+
+
+state 45
+
+   60 Primarny: ID LOZAT . NepArgumenty POZAT
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    $default  reduce using rule 61 (NepArgumenty)
+
+    Vyraz         go to state 70
+    Primarny      go to state 37
+    NepArgumenty  go to state 71
+    Argumenty     go to state 72
+
+
+state 46
+
+   56 Primarny: ID ROVNE . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 73
+    Primarny  go to state 37
+
+
+state 47
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+   59 Primarny: LOZAT Vyraz . POZAT
+
+    POZAT  shift, and go to state 74
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+
+state 48
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   51      | MINUS Vyraz .
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    $default  reduce using rule 51 (Vyraz)
+
+
+state 49
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   53      | NOT Vyraz .
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    $default  reduce using rule 53 (Vyraz)
+
+
+state 50
+
+   52 Vyraz: Vyraz ZVYS . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 75
+    Primarny  go to state 37
+
+
+state 51
+
+   54 Vyraz: Vyraz OTAZ . Vyraz DBOD Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 76
+    Primarny  go to state 37
+
+
+state 52
+
+   49 Vyraz: Vyraz OR . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 77
+    Primarny  go to state 37
+
+
+state 53
+
+   50 Vyraz: Vyraz AND . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 78
+    Primarny  go to state 37
+
+
+state 54
+
+   48 Vyraz: Vyraz NE . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 79
+    Primarny  go to state 37
+
+
+state 55
+
+   47 Vyraz: Vyraz EQ . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 80
+    Primarny  go to state 37
+
+
+state 56
+
+   46 Vyraz: Vyraz GE . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 81
+    Primarny  go to state 37
+
+
+state 57
+
+   45 Vyraz: Vyraz GT . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 82
+    Primarny  go to state 37
+
+
+state 58
+
+   44 Vyraz: Vyraz LE . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 83
+    Primarny  go to state 37
+
+
+state 59
+
+   43 Vyraz: Vyraz LT . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 84
+    Primarny  go to state 37
+
+
+state 60
+
+   40 Vyraz: Vyraz MINUS . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 85
+    Primarny  go to state 37
+
+
+state 61
+
+   39 Vyraz: Vyraz PLUS . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 86
+    Primarny  go to state 37
+
+
+state 62
+
+   42 Vyraz: Vyraz DEL . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 87
+    Primarny  go to state 37
+
+
+state 63
+
+   41 Vyraz: Vyraz KRAT . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 88
+    Primarny  go to state 37
+
+
+state 64
+
+    6 TypeDef: STRUCT ID LZZAT Parametre PZZAT BCIARKA .
+
+    $default  reduce using rule 6 (TypeDef)
+
+
+state 65
+
+   14 Parametre: Parametre CIARKA DataType . ID
+
+    ID  shift, and go to state 89
+
+
+state 66
+
+    7 TypeDef: UNION ID LZZAT Parametre PZZAT BCIARKA .
+
+    $default  reduce using rule 7 (TypeDef)
+
+
+state 67
+
+   24 TeloMet: LZZAT . Prikazy PZZAT
+   25        | LZZAT . PZZAT
+
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    PZZAT        shift, and go to state 94
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikazy    go to state 98
+    Prikaz     go to state 99
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 68
+
+   23 TeloMet: BCIARKA .
+
+    $default  reduce using rule 23 (TeloMet)
+
+
+state 69
+
+   10 Function: DataType ID LOZAT NepParametre POZAT TeloMet .
+
+    $default  reduce using rule 10 (Function)
+
+
+state 70
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+   63 Argumenty: Vyraz .
+
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 63 (Argumenty)
+
+
+state 71
+
+   60 Primarny: ID LOZAT NepArgumenty . POZAT
+
+    POZAT  shift, and go to state 101
+
+
+state 72
+
+   62 NepArgumenty: Argumenty .
+   64 Argumenty: Argumenty . CIARKA Vyraz
+
+    CIARKA  shift, and go to state 102
+
+    $default  reduce using rule 62 (NepArgumenty)
+
+
+state 73
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+   56 Primarny: ID ROVNE Vyraz .
+
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 56 (Primarny)
+
+
+state 74
+
+   59 Primarny: LOZAT Vyraz POZAT .
+
+    $default  reduce using rule 59 (Primarny)
+
+
+state 75
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   52      | Vyraz ZVYS Vyraz .
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    $default  reduce using rule 52 (Vyraz)
+
+
+state 76
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+   54      | Vyraz OTAZ Vyraz . DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    DBOD   shift, and go to state 103
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+
+state 77
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   49      | Vyraz OR Vyraz .
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 49 (Vyraz)
+
+
+state 78
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   50      | Vyraz AND Vyraz .
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 50 (Vyraz)
+
+
+state 79
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   48      | Vyraz NE Vyraz .
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 48 (Vyraz)
+
+
+state 80
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   47      | Vyraz EQ Vyraz .
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 47 (Vyraz)
+
+
+state 81
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   46      | Vyraz GE Vyraz .
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 46 (Vyraz)
+
+
+state 82
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   45      | Vyraz GT Vyraz .
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 45 (Vyraz)
+
+
+state 83
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   44      | Vyraz LE Vyraz .
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 44 (Vyraz)
+
+
+state 84
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   43      | Vyraz LT Vyraz .
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS   shift, and go to state 50
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 43 (Vyraz)
+
+
+state 85
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   40      | Vyraz MINUS Vyraz .
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS  shift, and go to state 50
+    DEL   shift, and go to state 62
+    KRAT  shift, and go to state 63
+
+    $default  reduce using rule 40 (Vyraz)
+
+
+state 86
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   39      | Vyraz PLUS Vyraz .
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    ZVYS  shift, and go to state 50
+    DEL   shift, and go to state 62
+    KRAT  shift, and go to state 63
+
+    $default  reduce using rule 39 (Vyraz)
+
+
+state 87
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   42      | Vyraz DEL Vyraz .
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    $default  reduce using rule 42 (Vyraz)
+
+
+state 88
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   41      | Vyraz KRAT Vyraz .
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    $default  reduce using rule 41 (Vyraz)
+
+
+state 89
+
+   14 Parametre: Parametre CIARKA DataType ID .
+
+    $default  reduce using rule 14 (Parametre)
+
+
+state 90
+
+   31 Prikaz: RETURN . BCIARKA
+   33       | RETURN . Vyraz BCIARKA
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 104
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 105
+    Primarny  go to state 37
+
+
+state 91
+
+   35 Prikaz: IF . LOZAT Vyraz POZAT Prikaz ELSE Prikaz
+   36       | IF . LOZAT Vyraz POZAT Prikaz
+
+    LOZAT  shift, and go to state 106
+
+
+state 92
+
+   34 Prikaz: WHILE . LOZAT Vyraz POZAT Prikaz
+
+    LOZAT  shift, and go to state 107
+
+
+state 93
+
+   37 Prikaz: LZZAT . Prikazy PZZAT
+
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikazy    go to state 108
+    Prikaz     go to state 99
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 94
+
+   25 TeloMet: LZZAT PZZAT .
+
+    $default  reduce using rule 25 (TeloMet)
+
+
+state 95
+
+   32 Prikaz: BCIARKA .
+
+    $default  reduce using rule 32 (Prikaz)
+
+
+state 96
+
+   29 Prikaz: VarDef . BCIARKA
+
+    BCIARKA  shift, and go to state 109
+
+
+state 97
+
+    8 VarDef: DataType . ID
+    9       | DataType . ID EQ Vyraz
+
+    ID  shift, and go to state 110
+
+
+state 98
+
+   24 TeloMet: LZZAT Prikazy . PZZAT
+   27 Prikazy: Prikazy . Prikaz
+   28        | Prikazy . error
+
+    error        shift, and go to state 111
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    PZZAT        shift, and go to state 112
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikaz     go to state 113
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 99
+
+   26 Prikazy: Prikaz .
+
+    $default  reduce using rule 26 (Prikazy)
+
+
+state 100
+
+   30 Prikaz: Vyraz . BCIARKA
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    BCIARKA  shift, and go to state 114
+    ZVYS     shift, and go to state 50
+    OTAZ     shift, and go to state 51
+    OR       shift, and go to state 52
+    AND      shift, and go to state 53
+    NE       shift, and go to state 54
+    EQ       shift, and go to state 55
+    GE       shift, and go to state 56
+    GT       shift, and go to state 57
+    LE       shift, and go to state 58
+    LT       shift, and go to state 59
+    MINUS    shift, and go to state 60
+    PLUS     shift, and go to state 61
+    DEL      shift, and go to state 62
+    KRAT     shift, and go to state 63
+
+
+state 101
+
+   60 Primarny: ID LOZAT NepArgumenty POZAT .
+
+    $default  reduce using rule 60 (Primarny)
+
+
+state 102
+
+   64 Argumenty: Argumenty CIARKA . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 115
+    Primarny  go to state 37
+
+
+state 103
+
+   54 Vyraz: Vyraz OTAZ Vyraz DBOD . Vyraz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 116
+    Primarny  go to state 37
+
+
+state 104
+
+   31 Prikaz: RETURN BCIARKA .
+
+    $default  reduce using rule 31 (Prikaz)
+
+
+state 105
+
+   33 Prikaz: RETURN Vyraz . BCIARKA
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    BCIARKA  shift, and go to state 117
+    ZVYS     shift, and go to state 50
+    OTAZ     shift, and go to state 51
+    OR       shift, and go to state 52
+    AND      shift, and go to state 53
+    NE       shift, and go to state 54
+    EQ       shift, and go to state 55
+    GE       shift, and go to state 56
+    GT       shift, and go to state 57
+    LE       shift, and go to state 58
+    LT       shift, and go to state 59
+    MINUS    shift, and go to state 60
+    PLUS     shift, and go to state 61
+    DEL      shift, and go to state 62
+    KRAT     shift, and go to state 63
+
+
+state 106
+
+   35 Prikaz: IF LOZAT . Vyraz POZAT Prikaz ELSE Prikaz
+   36       | IF LOZAT . Vyraz POZAT Prikaz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 118
+    Primarny  go to state 37
+
+
+state 107
+
+   34 Prikaz: WHILE LOZAT . Vyraz POZAT Prikaz
+
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LOZAT        shift, and go to state 33
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    Vyraz     go to state 119
+    Primarny  go to state 37
+
+
+state 108
+
+   27 Prikazy: Prikazy . Prikaz
+   28        | Prikazy . error
+   37 Prikaz: LZZAT Prikazy . PZZAT
+
+    error        shift, and go to state 111
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    PZZAT        shift, and go to state 120
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikaz     go to state 113
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 109
+
+   29 Prikaz: VarDef BCIARKA .
+
+    $default  reduce using rule 29 (Prikaz)
+
+
+state 110
+
+    8 VarDef: DataType ID .
+    9       | DataType ID . EQ Vyraz
+
+    EQ  shift, and go to state 22
+
+    $default  reduce using rule 8 (VarDef)
+
+
+state 111
+
+   28 Prikazy: Prikazy error .
+
+    $default  reduce using rule 28 (Prikazy)
+
+
+state 112
+
+   24 TeloMet: LZZAT Prikazy PZZAT .
+
+    $default  reduce using rule 24 (TeloMet)
+
+
+state 113
+
+   27 Prikazy: Prikazy Prikaz .
+
+    $default  reduce using rule 27 (Prikazy)
+
+
+state 114
+
+   30 Prikaz: Vyraz BCIARKA .
+
+    $default  reduce using rule 30 (Prikaz)
+
+
+state 115
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+   64 Argumenty: Argumenty CIARKA Vyraz .
+
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 64 (Argumenty)
+
+
+state 116
+
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+   54      | Vyraz OTAZ Vyraz DBOD Vyraz .
+
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+    $default  reduce using rule 54 (Vyraz)
+
+
+state 117
+
+   33 Prikaz: RETURN Vyraz BCIARKA .
+
+    $default  reduce using rule 33 (Prikaz)
+
+
+state 118
+
+   35 Prikaz: IF LOZAT Vyraz . POZAT Prikaz ELSE Prikaz
+   36       | IF LOZAT Vyraz . POZAT Prikaz
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    POZAT  shift, and go to state 121
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+
+state 119
+
+   34 Prikaz: WHILE LOZAT Vyraz . POZAT Prikaz
+   39 Vyraz: Vyraz . PLUS Vyraz
+   40      | Vyraz . MINUS Vyraz
+   41      | Vyraz . KRAT Vyraz
+   42      | Vyraz . DEL Vyraz
+   43      | Vyraz . LT Vyraz
+   44      | Vyraz . LE Vyraz
+   45      | Vyraz . GT Vyraz
+   46      | Vyraz . GE Vyraz
+   47      | Vyraz . EQ Vyraz
+   48      | Vyraz . NE Vyraz
+   49      | Vyraz . OR Vyraz
+   50      | Vyraz . AND Vyraz
+   52      | Vyraz . ZVYS Vyraz
+   54      | Vyraz . OTAZ Vyraz DBOD Vyraz
+
+    POZAT  shift, and go to state 122
+    ZVYS   shift, and go to state 50
+    OTAZ   shift, and go to state 51
+    OR     shift, and go to state 52
+    AND    shift, and go to state 53
+    NE     shift, and go to state 54
+    EQ     shift, and go to state 55
+    GE     shift, and go to state 56
+    GT     shift, and go to state 57
+    LE     shift, and go to state 58
+    LT     shift, and go to state 59
+    MINUS  shift, and go to state 60
+    PLUS   shift, and go to state 61
+    DEL    shift, and go to state 62
+    KRAT   shift, and go to state 63
+
+
+state 120
+
+   37 Prikaz: LZZAT Prikazy PZZAT .
+
+    $default  reduce using rule 37 (Prikaz)
+
+
+state 121
+
+   35 Prikaz: IF LOZAT Vyraz POZAT . Prikaz ELSE Prikaz
+   36       | IF LOZAT Vyraz POZAT . Prikaz
+
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikaz     go to state 123
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 122
+
+   34 Prikaz: WHILE LOZAT Vyraz POZAT . Prikaz
+
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikaz     go to state 124
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 123
+
+   35 Prikaz: IF LOZAT Vyraz POZAT Prikaz . ELSE Prikaz
+   36       | IF LOZAT Vyraz POZAT Prikaz .
+
+    ELSE  shift, and go to state 125
+
+    $default  reduce using rule 36 (Prikaz)
+
+
+state 124
+
+   34 Prikaz: WHILE LOZAT Vyraz POZAT Prikaz .
+
+    $default  reduce using rule 34 (Prikaz)
+
+
+state 125
+
+   35 Prikaz: IF LOZAT Vyraz POZAT Prikaz ELSE . Prikaz
+
+    INT          shift, and go to state 4
+    CHAR         shift, and go to state 5
+    VOID         shift, and go to state 6
+    STRUCT       shift, and go to state 23
+    UNION        shift, and go to state 24
+    RETURN       shift, and go to state 90
+    IF           shift, and go to state 91
+    WHILE        shift, and go to state 92
+    ID           shift, and go to state 30
+    STR_LITERAL  shift, and go to state 31
+    INT_LITERAL  shift, and go to state 32
+    LZZAT        shift, and go to state 93
+    LOZAT        shift, and go to state 33
+    BCIARKA      shift, and go to state 95
+    MINUS        shift, and go to state 34
+    NOT          shift, and go to state 35
+
+    VarDef     go to state 96
+    DataType   go to state 97
+    VoidType   go to state 13
+    CanonType  go to state 14
+    UserType   go to state 15
+    Prikaz     go to state 126
+    Vyraz      go to state 100
+    Primarny   go to state 37
+
+
+state 126
+
+   35 Prikaz: IF LOZAT Vyraz POZAT Prikaz ELSE Prikaz .
+
+    $default  reduce using rule 35 (Prikaz)
